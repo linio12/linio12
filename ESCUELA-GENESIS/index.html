@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESCUELA GENESIS - Plataforma Educativa</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            display: flex;
+            min-height: calc(100vh - 120px);
+        }
+        
+        .sidebar {
+            width: 250px;
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .sidebar.collapsed {
+            width: 60px;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-menu a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        
+        .sidebar-menu a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .sidebar-menu a.active {
+            background-color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .sidebar-menu i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .sidebar-collapse {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            margin: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+        
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent-color);
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .table th, .table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .table tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .login-container {
+            max-width: 400px;
+            margin: 5rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .login-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+        
+        .login-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 0.5rem;
+            text-decoration: none;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--light-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 2rem;
+            color: var(--dark-color);
+        }
+        
+        .user-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .month-selector {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        
+        .month-btn {
+            padding: 0.5rem 1rem;
+            background-color: var(--light-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .month-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .attendance-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .attendance-day {
+            padding: 0.5rem;
+            text-align: center;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+        }
+        
+        .attendance-day.present {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .attendance-day.absent {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .course-card {
+            background-color: var(--light-color);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .course-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .sidebar.collapsed {
+                width: 100%;
+            }
+            
+            .main-content {
+                margin: 0;
+                border-radius: 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Pantalla de Login -->
+    <div id="login-screen">
+        <div class="login-container">
+            <div class="login-logo">ESCUELA GENESIS</div>
+            <h2 class="login-title">DOCENTE Y PADRES</h2>
+            
+            <div id="login-form">
+                <div class="form-group">
+                    <label for="user-type">Tipo de Usuario</label>
+                    <select id="user-type">
+                        <option value="teacher">Docente</option>
+                        <option value="student">Estudiante</option>
+                        <option value="parent">Padre</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="username">USUARIO</label>
+                    <input type="text" id="username" placeholder="Ingrese su usuario">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">CONTRASEÑA</label>
+                    <input type="password" id="password" placeholder="Ingrese su contraseña">
+                </div>
+                
+                <button id="login-btn" class="btn-primary">Sign In</button>
+                
+                <p style="text-align: center; margin-top: 1rem;">
+                    <a href="#" id="forgot-password">Forgot password?</a>
+                </p>
+            </div>
+            
+            <div class="social-links">
+                <p>VISITA NUESTRAS REDES SOCIALES:</p>
+                <p><i class="fas fa-envelope"></i> correo: genesis@gmail.com</p>
+                <p><i class="fas fa-phone"></i> telf: +51 957 698 657</p>
+            </div>
+            
+            <p style="margin-top: 1rem; font-size: 0.8rem;">
+                Desarrollado por MDRA consulta, sac © 2025
+            </p>
+        </div>
+    </div>
+    
+    <!-- Aplicación Principal (oculta inicialmente) -->
+    <div id="app-container" class="hidden">
+        <header>
+            <h1>ESCUELA GENESIS - Plataforma Educativa</h1>
+        </header>
+        
+        <div class="container">
+            <aside class="sidebar">
+                <button class="sidebar-collapse">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active" data-tab="dashboard"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+                    <li><a href="#" data-tab="profile"><i class="fas fa-user"></i> <span>Perfil</span></a></li>
+                    <li><a href="#" data-tab="attendance"><i class="fas fa-calendar-check"></i> <span>Asistencia</span></a></li>
+                    <li><a href="#" data-tab="courses"><i class="fas fa-book"></i> <span>Cursos</span></a></li>
+                    <li><a href="#" data-tab="grades"><i class="fas fa-chart-bar"></i> <span>Notas</span></a></li>
+                    <li><a href="#" data-tab="activities"><i class="fas fa-tasks"></i> <span>Actividades</span></a></li>
+                    <li><a href="#" data-tab="sports"><i class="fas fa-running"></i> <span>Deportes</span></a></li>
+                    <li><a href="#" data-tab="messages"><i class="fas fa-envelope"></i> <span>Mensajes</span></a></li>
+                    <li><a href="#" data-tab="reports"><i class="fas fa-file-alt"></i> <span>Reportes</span></a></li>
+                    <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> <span>Cerrar Sesión</span></a></li>
+                </ul>
+            </aside>
+            
+            <main class="main-content">
+                <!-- Panel de Inicio -->
+                <div id="dashboard" class="tab-content active">
+                    <h2>Bienvenido al Sistema ESCUELA GENESIS</h2>
+                    <p>Seleccione una opción del menú lateral para comenzar.</p>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Resumen</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                                <div class="course-card">
+                                    <h3>Asistencia</h3>
+                                    <p>Ver registro de asistencia</p>
+                                </div>
+                                <div class="course-card">
+                                    <h3>Notas</h3>
+                                    <p>Consultar calificaciones</p>
+                                </div>
+                                <div class="course-card">
+                                    <h3>Actividades</h3>
+                                    <p>Ver actividades programadas</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Perfil de Usuario -->
+                <div id="profile" class="tab-content">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="user-info">
+                            <h3 id="profile-name">Dante Ismael</h3>
+                            <p id="profile-role">Docente</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Información Personal</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>DNI:</label>
+                                <p id="profile-dni">65843522</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Correo Electrónico:</label>
+                                <p id="profile-email">dante.ismael@gmail.com</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Dirección:</label>
+                                <p id="profile-address">JR. LOS PINOS CON LIMA N° 1876</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Número de Celular:</label>
+                                <p id="profile-phone">+51 945754321</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Información Académica</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Cursos asignados:</label>
+                                <p>Matemática, Comunicación</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Horario:</label>
+                                <p>Lunes a Viernes, 8:00 am - 2:00 pm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Asistencia -->
+                <div id="attendance" class="tab-content">
+                    <h2>Asistencia</h2>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Registro de Asistencia</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="month-selector">
+                                <button class="month-btn" data-month="marzo">MARZO</button>
+                                <button class="month-btn" data-month="abril">ABRIL</button>
+                                <button class="month-btn" data-month="mayo">MAYO</button>
+                                <button class="month-btn active" data-month="junio">JUNIO</button>
+                                <button class="month-btn" data-month="julio">JULIO</button>
+                            </div>
+                            
+                            <div class="attendance-grid">
+                                <!-- Días de la semana -->
+                                <div class="attendance-day" style="font-weight: bold;">L</div>
+                                <div class="attendance-day" style="font-weight: bold;">M</div>
+                                <div class="attendance-day" style="font-weight: bold;">M</div>
+                                <div class="attendance-day" style="font-weight: bold;">J</div>
+                                <div class="attendance-day" style="font-weight: bold;">V</div>
+                                <div class="attendance-day" style="font-weight: bold;">S</div>
+                                <div class="attendance-day" style="font-weight: bold;">D</div>
+                                
+                                <!-- Días del mes (ejemplo) -->
+                                <div class="attendance-day"></div>
+                                <div class="attendance-day"></div>
+                                <div class="attendance-day present">1</div>
+                                <div class="attendance-day present">2</div>
+                                <div class="attendance-day present">3</div>
+                                <div class="attendance-day">4</div>
+                                <div class="attendance-day">5</div>
+                                <div class="attendance-day present">6</div>
+                                <div class="attendance-day absent">7</div>
+                                <div class="attendance-day present">8</div>
+                                <div class="attendance-day present">9</div>
+                                <div class="attendance-day">10</div>
+                                <div class="attendance-day">11</div>
+                                <div class="attendance-day present">12</div>
+                                <div class="attendance-day present">13</div>
+                                <div class="attendance-day present">14</div>
+                                <div class="attendance-day">15</div>
+                                <div class="attendance-day">16</div>
+                                <div class="attendance-day present">17</div>
+                                <div class="attendance-day absent">18</div>
+                                <div class="attendance-day present">19</div>
+                                <div class="attendance-day">20</div>
+                                <div class="attendance-day">21</div>
+                                <div class="attendance-day present">22</div>
+                                <div class="attendance-day present">23</div>
+                                <div class="attendance-day present">24</div>
+                                <div class="attendance-day">25</div>
+                                <div class="attendance-day">26</div>
+                                <div class="attendance-day present">27</div>
+                                <div class="attendance-day present">28</div>
+                                <div class="attendance-day present">29</div>
+                                <div class="attendance-day">30</div>
+                            </div>
+                            
+                            <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+                                <div style="display: flex; align-items: center;">
+                                    <div style="width: 20px; height: 20px; background-color: var(--success-color); margin-right: 0.5rem;"></div>
+                                    <span>Presente</span>
+                                </div>
+                                <div style="display: flex; align-items: center;">
+                                    <div style="width: 20px; height: 20px; background-color: var(--accent-color); margin-right: 0.5rem;"></div>
+                                    <span>Ausente</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cursos -->
+                <div id="courses" class="tab-content">
+                    <h2>Cursos</h2>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Mis Cursos</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
+                                <div class="course-card">
+                                    <h3>MATEMÁTICA</h3>
+                                    <p>Profesor: Dante Ismael</p>
+                                    <p>Horario: Lunes y Miércoles, 8:00 - 10:00</p>
+                                </div>
+                                <div class="course-card">
+                                    <h3>COMUNICACIÓN</h3>
+                                    <p>Profesor: Yirael</p>
+                                    <p>Horario: Martes y Jueves, 10:00 - 12:00</p>
+                                </div>
+                                <div class="course-card">
+                                    <h3>PERSONAL SOCIAL</h3>
+                                    <p>Profesor: Samuel</p>
+                                    <p>Horario: Viernes, 8:00 - 10:00</p>
+                                </div>
+                                <div class="course-card">
+                                    <h3>CTA</h3>
+                                    <p>Profesor: Michael</p>
+                                    <p>Horario: Lunes, 10:00 - 12:00</p>
+                                </div>
+                                <div class="course-card">
+                                    <h3>EDUCACIÓN FÍSICA</h3>
+                                    <p>Profesor: Linio</p>
+                                    <p>Horario: Miércoles, 14:00 - 16:00</p>
+                                </div>
+                                <div class="course-card">
+                                    <h3>EDUCACIÓN RELIGIOSA</h3>
+                                    <p>Profesor: Genesis</p>
+                                    <p>Horario: Jueves, 14:00 - 16:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notas -->
+                <div id="grades" class="tab-content">
+                    <h2>Notas</h2>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Calificaciones por Trimestre</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="margin-bottom: 1.5rem;">
+                                <button class="month-btn active" data-term="1">I TRIMESTRE</button>
+                                <button class="month-btn" data-term="2">II TRIMESTRE</button>
+                                <button class="month-btn" data-term="3">III TRIMESTRE</button>
+                            </div>
+                            
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Curso</th>
+                                        <th>Nota 1</th>
+                                        <th>Nota 2</th>
+                                        <th>Nota 3</th>
+                                        <th>Promedio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>MATEMÁTICA</td>
+                                        <td>15</td>
+                                        <td>16</td>
+                                        <td>17</td>
+                                        <td>16</td>
+                                    </tr>
+                                    <tr>
+                                        <td>COMUNICACIÓN</td>
+                                        <td>14</td>
+                                        <td>15</td>
+                                        <td>16</td>
+                                        <td>15</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PERSONAL SOCIAL</td>
+                                        <td>17</td>
+                                        <td>18</td>
+                                        <td>17</td>
+                                        <td>17.3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CTA</td>
+                                        <td>16</td>
+                                        <td>15</td>
+                                        <td>16</td>
+                                        <td>15.7</td>
+                                    </tr>
+                                    <tr>
+                                        <td>EDUCACIÓN FÍSICA</td>
+                                        <td>18</td>
+                                        <td>17</td>
+                                        <td>18</td>
+                                        <td>17.7</td>
+                                    </tr>
+                                    <tr>
+                                        <td>EDUCACIÓN RELIGIOSA</td>
+                                        <td>16</td>
+                                        <td>17</td>
+                                        <td>18</td>
+                                        <td>17</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Actividades -->
+                <div id="activities" class="tab-content">
+                    <h2>Actividades Extracurriculares</h2>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Próximas Actividades</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Actividad</th>
+                                        <th>Fecha</th>
+                                        <th>Hora</th>
+                                        <th>Lugar</th>
+                                        <th>Responsable</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Feria de Ciencias</td>
+                                        <td>15/07/2025</td>
+                                        <td>9:00 - 13:00</td>
+                                        <td>Patio Principal</td>
+                                        <td>Prof. Dante</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Concurso de Matemáticas</td>
+                                        <td>20/07/2025</td>
+                                        <td>10:00 - 12:00</td>
+                                        <td>Aula 201</td>
+                                        <td>Prof. Yirael</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Presentación de Teatro</td>
+                                        <td>25/07/2025</td>
+                                        <td>14:00 - 16:00</td>
+                                        <td>Auditorio</td>
+                                        <td>Prof. Samuel</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Excursión Ecológica</td>
+                                        <td>30/07/2025</td>
+                                        <td>8:00 - 15:00</td>
+                                        <td>Parque Nacional</td>
+                                        <td>Prof. Michael</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Deportes -->
+                <div id="sports" class="tab-content">
+                    <h2>Deportes Escolares</h2>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Inscripciones</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Inscríbete en los deportes escolares disponibles:</p>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                                <div class="course-card">
+                                    <h3>Fútbol</h3>
+                                    <p>Entrenador: Prof. Linio</p>
+                                    <p>Horario: Lunes y Miércoles, 16:00 - 18:00</p>
+                                    <button style="margin-top: 0.5rem; width: 100%;">Inscribirse</button>
+                                </div>
+                                <div class="course-card">
+                                    <h3>Vóley</h3>
+                                    <p>Entrenador: Prof. Genesis</p>
+                                    <p>Horario: Martes y Jueves, 16:00 - 18:00</p>
+                                    <button style="margin-top: 0.5rem; width: 100%;">Inscribirse</button>
+                                </div>
+                                <div class="course-card">
+                                    <h3>Básquet</h3>
+                                    <p>Entrenador: Prof. Michael</p>
+                                    <p>Horario: Viernes, 16:00 - 18:00</p>
+                                    <button style="margin-top: 0.5rem; width: 100%;">Inscribirse</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Clasificados</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Deporte</th>
+                                        <th>Equipo</th>
+                                        <th>Posición</th>
+                                        <th>Puntos</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Fútbol</td>
+                                        <td>Águilas</td>
+                                        <td>1°</td>
+                                        <td>15</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fútbol</td>
+                                        <td>Leones</td>
+                                        <td>2°</td>
+                                        <td>12</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Vóley</td>
+                                        <td>Tigres</td>
+                                        <td>1°</td>
+                                        <td>18</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Vóley</td>
+                                        <td>Panteras</td>
+                                        <td>2°</td>
+                                        <td>15</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Básquet</td>
+                                        <td>Halcones</td>
+                                        <td>1°</td>
+                                        <td>20</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Entrenamientos</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Deporte</th>
+                                        <th>Días</th>
+                                        <th>Hora</th>
+                                        <th>Lugar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Fútbol</td>
+                                        <td>Lunes, Miércoles</td>
+                                        <td>16:00 - 18:00</td>
+                                        <td>Cancha Principal</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Vóley</td>
+                                        <td>Martes, Jueves</td>
+                                        <td>16:00 - 18:00</td>
+                                        <td>Coliseo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Básquet</td>
+                                        <td>Viernes</td>
+                                        <td>16:00 - 18:00</td>
+                                        <td>Cancha Techada</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mensajes -->
+                <div id="messages" class="tab-content">
+                    <h2>Mensajes</h2>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Bandeja de Entrada</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; gap: 1rem;">
+                                <div style="flex: 1; border-right: 1px solid #eee; padding-right: 1rem;">
+                                    <div style="margin-bottom: 1rem;">
+                                        <input type="text" placeholder="Buscar mensajes..." style="width: 100%;">
+                                    </div>
+                                    
+                                    <div style="max-height: 400px; overflow-y: auto;">
+                                        <div style="padding: 0.75rem; border-bottom: 1px solid #eee; cursor: pointer;">
+                                            <div style="font-weight: bold;">Prof. Yirael</div>
+                                            <div style="font-size: 0.9rem; color: #666;">Re: Próxima reunión de padres</div>
+                                            <div style="font-size: 0.8rem; color: #999;">15/07/2025</div>
+                                        </div>
+                                        <div style="padding: 0.75rem; border-bottom: 1px solid #eee; cursor: pointer; background-color: #f5f5f5;">
+                                            <div style="font-weight: bold;">Administración</div>
+                                            <div style="font-size: 0.9rem; color: #666;">Recordatorio: Pago de matrícula</div>
+                                            <div style="font-size: 0.8rem; color: #999;">14/07/2025</div>
+                                        </div>
+                                        <div style="padding: 0.75rem; border-bottom: 1px solid #eee; cursor: pointer;">
+                                            <div style="font-weight: bold;">Prof. Dante</div>
+                                            <div style="font-size: 0.9rem; color: #666;">Tarea de Matemáticas</div>
+                                            <div style="font-size: 0.8rem; color: #999;">12/07/2025</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div style="flex: 2; padding-left: 1rem;">
+                                    <h4>Re: Próxima reunión de padres</h4>
+                                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">De: Prof. Yirael &lt;yirael@escuela genesis.edu&gt;</p>
+                                    
+                                    <div style="border: 1px solid #eee; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
+                                        <p>Estimado padre de familia,</p>
+                                        <p>Le informamos que la próxima reunión de padres se llevará a cabo el día 20 de julio a las 10:00 am en el aula 201.</p>
+                                        <p>Es importante su asistencia para tratar temas relevantes sobre el desempeño académico de su hijo.</p>
+                                        <p>Atentamente,<br>Prof. Yirael</p>
+                                    </div>
+                                    
+                                    <div>
+                                        <textarea style="width: 100%; height: 100px; margin-bottom: 0.5rem; padding: 0.75rem;" placeholder="Escriba su respuesta..."></textarea>
+                                        <button>Enviar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reportes -->
+                <div id="reports" class="tab-content">
+                    <h2>Reportes</h2>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Generar Reportes</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
+                                <div class="course-card">
+                                    <h3>Reporte de Asistencia</h3>
+                                    <p>Genera un reporte detallado de asistencia por mes</p>
+                                    <button style="margin-top: 0.5rem; width: 100%;">Generar</button>
+                                </div>
+                                <div class="course-card">
+                                    <h3>Reporte de Notas</h3>
+                                    <p>Genera un reporte de calificaciones por trimestre</p>
+                                    <button style="margin-top: 0.5rem; width: 100%;">Generar</button>
+                                </div>
+                                <div class="course-card">
+                                    <h3>Reporte de Actividades</h3>
+                                    <p>Genera un reporte de participación en actividades</p>
+                                    <button style="margin-top: 0.5rem; width: 100%;">Generar</button>
+                                </div>
+                                <div class="course-card">
+                                    <h3>Reporte de Deportes</h3>
+                                    <p>Genera un reporte de participación deportiva</p>
+                                    <button style="margin-top: 0.5rem; width: 100%;">Generar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Reportes Generados</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre del Reporte</th>
+                                        <th>Tipo</th>
+                                        <th>Fecha</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Asistencia Junio 2025</td>
+                                        <td>Asistencia</td>
+                                        <td>01/07/2025</td>
+                                        <td>
+                                            <button style="padding: 0.25rem 0.5rem; margin-right: 0.5rem;">Ver</button>
+                                            <button style="padding: 0.25rem 0.5rem;">Descargar</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Notas I Trimestre 2025</td>
+                                        <td>Notas</td>
+                                        <td>15/04/2025</td>
+                                        <td>
+                                            <button style="padding: 0.25rem 0.5rem; margin-right: 0.5rem;">Ver</button>
+                                            <button style="padding: 0.25rem 0.5rem;">Descargar</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Participación Actividades 2025</td>
+                                        <td>Actividades</td>
+                                        <td>10/07/2025</td>
+                                        <td>
+                                            <button style="padding: 0.25rem 0.5rem; margin-right: 0.5rem;">Ver</button>
+                                            <button style="padding: 0.25rem 0.5rem;">Descargar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+        <footer>
+            <div class="social-links">
+                <p>VISITA NUESTRAS REDES SOCIALES:</p>
+                <p><i class="fas fa-envelope"></i> correo: genesis@gmail.com</p>
+                <p><i class="fas fa-phone"></i> telf: +51 957 698 657</p>
+            </div>
+            <p>Desarrollado por MDRA consulta, sac © 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Manejo del login
+            const loginScreen = document.getElementById('login-screen');
+            const appContainer = document.getElementById('app-container');
+            const loginBtn = document.getElementById('login-btn');
+            const logoutBtn = document.getElementById('logout-btn');
+            
+            loginBtn.addEventListener('click', function() {
+                const username = document.getElementById('username').value;
+                const userType = document.getElementById('user-type').value;
+                
+                if (username && document.getElementById('password').value) {
+                    // Actualizar el perfil según el tipo de usuario
+                    if (userType === 'teacher') {
+                        document.getElementById('profile-name').textContent = 'Dante Ismael';
+                        document.getElementById('profile-role').textContent = 'Docente';
+                        document.getElementById('profile-dni').textContent = '65843522';
+                        document.getElementById('profile-email').textContent = 'dante.ismael@gmail.com';
+                        document.getElementById('profile-address').textContent = 'JR. LOS PINOS CON LIMA N° 1876';
+                        document.getElementById('profile-phone').textContent = '+51 945754321';
+                    } else if (userType === 'student') {
+                        document.getElementById('profile-name').textContent = 'Michael';
+                        document.getElementById('profile-role').textContent = 'Estudiante';
+                        document.getElementById('profile-dni').textContent = '01929393';
+                        document.getElementById('profile-email').textContent = 'michael@escuela genesis.edu';
+                        document.getElementById('profile-address').textContent = 'Jr. Estudiantes 123';
+                        document.getElementById('profile-phone').textContent = '+51 954873982 (Padre: Samuel)';
+                    } else if (userType === 'parent') {
+                        document.getElementById('profile-name').textContent = 'Samuel (Padre de Michael)';
+                        document.getElementById('profile-role').textContent = 'Padre de Familia';
+                        document.getElementById('profile-dni').textContent = '76543210';
+                        document.getElementById('profile-email').textContent = 'samuel@email.com';
+                        document.getElementById('profile-address').textContent = 'Jr. Estudiantes 123';
+                        document.getElementById('profile-phone').textContent = '+51 954873982';
+                    }
+                    
+                    loginScreen.classList.add('hidden');
+                    appContainer.classList.remove('hidden');
+                } else {
+                    alert('Por favor ingrese usuario y contraseña');
+                }
+            });
+            
+            logoutBtn.addEventListener('click', function() {
+                loginScreen.classList.remove('hidden');
+                appContainer.classList.add('hidden');
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+            });
+            
+            // Manejo de pestañas
+            const tabLinks = document.querySelectorAll('.sidebar-menu a[data-tab]');
+            
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Quitar active de todos los links
+                    tabLinks.forEach(l => l.classList.remove('active'));
+                    // Agregar active al link clickeado
+                    this.classList.add('active');
+                    
+                    // Ocultar todos los contenidos de pestañas
+                    document.querySelectorAll('.tab-content').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    
+                    // Mostrar el contenido de la pestaña clickeada
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Manejo de meses en asistencia
+            const monthBtns = document.querySelectorAll('.month-btn');
+            
+            monthBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    monthBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    // Aquí iría la lógica para cargar los datos del mes seleccionado
+                });
+            });
+            
+            // Manejo de trimestres en notas
+            const termBtns = document.querySelectorAll('[data-term]');
+            
+            termBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    termBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    // Aquí iría la lógica para cargar los datos del trimestre seleccionado
+                });
+            });
+            
+            // Colapsar/expandir sidebar
+            const sidebarCollapse = document.querySelector('.sidebar-collapse');
+            const sidebar = document.querySelector('.sidebar');
+            
+            sidebarCollapse.addEventListener('click', function() {
+                sidebar.classList.toggle('collapsed');
+                
+                if (sidebar.classList.contains('collapsed')) {
+                    this.innerHTML = '<i class="fas fa-bars"></i>';
+                } else {
+                    this.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+            
+            // Simular clic en curso para mostrar detalles (ejemplo)
+            const courseCards = document.querySelectorAll('.course-card');
+            
+            courseCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Aquí iría la lógica para mostrar detalles del curso
+                    console.log('Curso seleccionado:', this.querySelector('h3').textContent);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
