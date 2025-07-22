@@ -12,6 +12,7 @@
             --light-color: #ecf0f1;
             --dark-color: #2c3e50;
             --success-color: #2ecc71;
+            --warning-color: #f39c12;
         }
         
         * {
@@ -32,6 +33,38 @@
             padding: 1rem;
             text-align: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .notification-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .container {
@@ -122,6 +155,9 @@
             padding-bottom: 0.75rem;
             margin-bottom: 1rem;
             color: var(--dark-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
         .form-group {
@@ -134,7 +170,7 @@
             font-weight: 600;
         }
         
-        input, select {
+        input, select, textarea {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid #ddd;
@@ -163,6 +199,22 @@
         
         .btn-accent:hover {
             background-color: #c0392b;
+        }
+        
+        .btn-warning {
+            background-color: var(--warning-color);
+        }
+        
+        .btn-warning:hover {
+            background-color: #e67e22;
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
         }
         
         .table {
@@ -315,6 +367,184 @@
             display: none;
         }
         
+        .student-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .student-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--light-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .student-info {
+            flex: 1;
+        }
+        
+        .student-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .notification-item {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .notification-item:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .notification-item.unread {
+            background-color: #f0f7ff;
+        }
+        
+        .notification-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .notification-date {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        .notification-message {
+            color: #555;
+        }
+        
+        .notification-type {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+        
+        .type-warning {
+            background-color: var(--warning-color);
+            color: white;
+        }
+        
+        .type-important {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .type-info {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Nuevos estilos para funcionalidades agregadas */
+        .grade-input {
+            width: 50px !important;
+            padding: 0.25rem !important;
+            text-align: center;
+        }
+        
+        .register-attendance-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .view-attendance-btn {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+        
+        /* Estilos para los estados de asistencia */
+        .present {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        
+        .absent {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .late {
+            color: var(--warning-color);
+            font-weight: bold;
+        }
+        
+        .justified {
+            color: #3498db;
+            font-weight: bold;
+        }
+        
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -332,9 +562,17 @@
                 margin: 0;
                 border-radius: 0;
             }
+            
+            .modal-content {
+                width: 95%;
+                padding: 1rem;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Añadir jsPDF para generar PDFs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
     <!-- Pantalla de Login -->
@@ -386,6 +624,15 @@
     <div id="app-container" class="hidden">
         <header>
             <h1>ESCUELA GENESIS - Plataforma Educativa</h1>
+            <div class="header-actions">
+                <button class="notification-btn" id="view-notifications-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge hidden">0</span>
+                </button>
+                <button class="notification-btn hidden" id="send-notification-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
         </header>
         
         <div class="container">
@@ -397,8 +644,8 @@
                 <ul class="sidebar-menu">
                     <li><a href="#" class="active" data-tab="dashboard"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
                     <li><a href="#" data-tab="profile"><i class="fas fa-user"></i> <span>Perfil</span></a></li>
+                    <li id="students-menu-item" class="hidden"><a href="#" data-tab="students"><i class="fas fa-users"></i> <span>Estudiantes</span></a></li>
                     <li><a href="#" data-tab="attendance"><i class="fas fa-calendar-check"></i> <span>Asistencia</span></a></li>
-                    <li><a href="#" data-tab="courses"><i class="fas fa-book"></i> <span>Cursos</span></a></li>
                     <li><a href="#" data-tab="grades"><i class="fas fa-chart-bar"></i> <span>Notas</span></a></li>
                     <li><a href="#" data-tab="activities"><i class="fas fa-tasks"></i> <span>Actividades</span></a></li>
                     <li><a href="#" data-tab="sports"><i class="fas fa-running"></i> <span>Deportes</span></a></li>
@@ -490,6 +737,26 @@
                     </div>
                 </div>
                 
+                <!-- Estudiantes (solo para docentes) -->
+                <div id="students" class="tab-content">
+                    <h2>Lista de Estudiantes</h2>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Mis Estudiantes</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="margin-bottom: 1rem;">
+                                <input type="text" id="student-search" placeholder="Buscar estudiantes..." style="width: 100%; padding: 0.75rem;">
+                            </div>
+                            
+                            <div id="students-list">
+                                <!-- Estudiantes se cargarán aquí dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Asistencia -->
                 <div id="attendance" class="tab-content">
                     <h2>Asistencia</h2>
@@ -497,6 +764,9 @@
                     <div class="card">
                         <div class="card-header">
                             <h3>Registro de Asistencia</h3>
+                            <button id="download-attendance-pdf" class="btn-success">
+                                <i class="fas fa-file-pdf"></i> Descargar PDF
+                            </button>
                         </div>
                         <div class="card-body">
                             <div class="month-selector">
@@ -618,6 +888,9 @@
                     <div class="card">
                         <div class="card-header">
                             <h3>Calificaciones por Trimestre</h3>
+                            <button id="download-grades-pdf" class="btn-success">
+                                <i class="fas fa-file-pdf"></i> Descargar PDF
+                            </button>
                         </div>
                         <div class="card-body">
                             <div style="margin-bottom: 1.5rem;">
@@ -1011,55 +1284,966 @@
         </footer>
     </div>
 
+    <!-- Modal de Notificaciones -->
+    <div class="modal" id="notifications-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Notificaciones</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="notifications-list">
+                <!-- Notificaciones se cargarán aquí dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Enviar Notificaciones (solo para docentes) -->
+    <div class="modal" id="send-notification-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Enviar Notificación</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="notification-type">Tipo de Notificación</label>
+                    <select id="notification-type" class="form-control">
+                        <option value="attendance">Inasistencia</option>
+                        <option value="homework">No entrega de trabajos</option>
+                        <option value="grades">Notas finales por trimestre</option>
+                        <option value="other">Otro</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notification-recipient">Destinatario</label>
+                    <select id="notification-recipient" class="form-control">
+                        <option value="all">Todos los estudiantes</option>
+                        <option value="specific">Estudiante específico</option>
+                        <option value="parents">Padres de familia</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="specific-student-container" style="display: none;">
+                    <label for="specific-student">Seleccionar Estudiante</label>
+                    <select id="specific-student" class="form-control">
+                        <!-- Opciones de estudiantes se cargarán dinámicamente -->
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notification-title">Título</label>
+                    <input type="text" id="notification-title" class="form-control" placeholder="Ingrese el título de la notificación">
+                </div>
+                
+                <div class="form-group">
+                    <label for="notification-message">Mensaje</label>
+                    <textarea id="notification-message" class="form-control" rows="5" placeholder="Escriba el mensaje de la notificación"></textarea>
+                </div>
+                
+                <button id="send-notification-submit" class="btn-primary">Enviar Notificación</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Editar Notas (solo para docentes) -->
+    <div class="modal" id="edit-grades-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Editar Notas</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label id="student-name-label">Notas para: </label>
+                </div>
+                
+                <div class="form-group">
+                    <label>Trimestre:</label>
+                    <select id="grade-term" class="form-control">
+                        <option value="1">I Trimestre</option>
+                        <option value="2">II Trimestre</option>
+                        <option value="3">III Trimestre</option>
+                    </select>
+                </div>
+                
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Curso</th>
+                            <th>Nota 1</th>
+                            <th>Nota 2</th>
+                            <th>Nota 3</th>
+                            <th>Promedio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="grades-table-body">
+                        <!-- Las filas de notas se generarán dinámicamente -->
+                    </tbody>
+                </table>
+                
+                <button id="save-grades-btn" class="btn-primary">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Registrar Asistencia (solo para docentes) -->
+    <div class="modal" id="attendance-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Registrar Asistencia</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label id="attendance-student-name">Estudiante: </label>
+                </div>
+                
+                <div class="form-group">
+                    <label>Fecha:</label>
+                    <input type="date" id="attendance-date" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label>Estado:</label>
+                    <select id="attendance-status" class="form-control">
+                        <option value="present">Presente</option>
+                        <option value="absent">Ausente</option>
+                        <option value="late">Tardanza</option>
+                        <option value="justified">Justificado</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Curso:</label>
+                    <select id="attendance-course" class="form-control">
+                        <option value="MATEMÁTICA">Matemática</option>
+                        <option value="COMUNICACIÓN">Comunicación</option>
+                        <option value="PERSONAL SOCIAL">Personal Social</option>
+                        <option value="CTA">CTA</option>
+                        <option value="EDUCACIÓN FÍSICA">Educación Física</option>
+                        <option value="EDUCACIÓN RELIGIOSA">Educación Religiosa</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Observaciones:</label>
+                    <textarea id="attendance-notes" class="form-control" rows="3"></textarea>
+                </div>
+                
+                <button id="save-attendance-btn" class="btn-primary">Guardar Asistencia</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Base de datos de usuarios (simulada)
+        const users = {
+            teacher: [
+                { 
+                    username: 'dante', 
+                    password: 'docente123', 
+                    name: 'Dante Ismael', 
+                    dni: '65843522', 
+                    email: 'dante.ismael@gmail.com', 
+                    address: 'JR. LOS PINOS CON LIMA N° 1876', 
+                    phone: '+51 945754321' 
+                }
+            ],
+            student: [
+                { 
+                    username: 'michael', 
+                    password: 'estudiante123', 
+                    name: 'Michael', 
+                    dni: '01929393', 
+                    email: 'michael@escuelagenesis.edu', 
+                    address: 'Jr. Estudiantes 123', 
+                    phone: '+51 954873982 (Padre: Samuel)' 
+                }
+            ],
+            parent: [
+                { 
+                    username: 'samuel', 
+                    password: 'padre123', 
+                    name: 'Samuel (Padre de Michael)', 
+                    dni: '76543210', 
+                    email: 'samuel@email.com', 
+                    address: 'Jr. Estudiantes 123', 
+                    phone: '+51 954873982' 
+                }
+            ]
+        };
+
+        // Lista de estudiantes (solo para docentes)
+        const studentsList = [
+            { id: 1, name: 'Michael', grade: '5° Primaria', dni: '01929393', attendance: '95%', avgGrade: '16.5' },
+            { id: 2, name: 'Ana', grade: '5° Primaria', dni: '87654321', attendance: '92%', avgGrade: '15.8' },
+            { id: 3, name: 'Luis', grade: '5° Primaria', dni: '12345678', attendance: '89%', avgGrade: '14.2' },
+            { id: 4, name: 'Sofía', grade: '5° Primaria', dni: '23456789', attendance: '97%', avgGrade: '17.3' },
+            { id: 5, name: 'Carlos', grade: '5° Primaria', dni: '34567890', attendance: '91%', avgGrade: '15.0' },
+            { id: 6, name: 'María', grade: '5° Primaria', dni: '45678901', attendance: '94%', avgGrade: '16.1' },
+            { id: 7, name: 'Jorge', grade: '5° Primaria', dni: '56789012', attendance: '88%', avgGrade: '13.9' },
+            { id: 8, name: 'Lucía', grade: '5° Primaria', dni: '67890123', attendance: '96%', avgGrade: '17.8' },
+            { id: 9, name: 'Pedro', grade: '5° Primaria', dni: '78901234', attendance: '90%', avgGrade: '14.7' },
+            { id: 10, name: 'Elena', grade: '5° Primaria', dni: '89012345', attendance: '93%', avgGrade: '16.4' },
+            { id: 11, name: 'Diego', grade: '5° Primaria', dni: '90123456', attendance: '87%', avgGrade: '13.5' },
+            { id: 12, name: 'Valeria', grade: '5° Primaria', dni: '01234567', attendance: '98%', avgGrade: '18.2' }
+        ];
+
+        // Notificaciones de ejemplo
+        let notifications = {
+            teacher: [],
+            student: [
+                {
+                    id: 1,
+                    title: "Inasistencia registrada",
+                    message: "Se ha registrado una inasistencia el día 18/06/2025 en el curso de Matemáticas.",
+                    type: "attendance",
+                    date: "18/06/2025",
+                    read: false,
+                    sender: "Prof. Dante"
+                },
+                {
+                    id: 2,
+                    title: "Tarea pendiente",
+                    message: "No se ha recibido la tarea de Comunicación que debía entregarse el 15/06/2025.",
+                    type: "homework",
+                    date: "16/06/2025",
+                    read: false,
+                    sender: "Prof. Yirael"
+                }
+            ],
+            parent: [
+                {
+                    id: 1,
+                    title: "Inasistencia de su hijo/a",
+                    message: "Su hijo/a Michael tuvo una inasistencia el día 18/06/2025 en el curso de Matemáticas.",
+                    type: "attendance",
+                    date: "18/06/2025",
+                    read: false,
+                    sender: "Prof. Dante"
+                },
+                {
+                    id: 2,
+                    title: "Notas del I Trimestre",
+                    message: "Las notas del I Trimestre ya están disponibles en la plataforma. El promedio de su hijo/a es 16.5.",
+                    type: "grades",
+                    date: "15/06/2025",
+                    read: true,
+                    sender: "Administración"
+                }
+            ]
+        };
+
+        // Variables globales para las nuevas funcionalidades
+        let currentEditingStudent = null;
+        const courses = ['MATEMÁTICA', 'COMUNICACIÓN', 'PERSONAL SOCIAL', 'CTA', 'EDUCACIÓN FÍSICA', 'EDUCACIÓN RELIGIOSA'];
+        let studentAttendance = {};
+        let studentGrades = {};
+        
+        // Inicializar jsPDF
+        const { jsPDF } = window.jspdf;
+
         document.addEventListener('DOMContentLoaded', function() {
             // Manejo del login
             const loginScreen = document.getElementById('login-screen');
             const appContainer = document.getElementById('app-container');
             const loginBtn = document.getElementById('login-btn');
             const logoutBtn = document.getElementById('logout-btn');
+            const userTypeSelect = document.getElementById('user-type');
+            const studentsMenuItem = document.getElementById('students-menu-item');
+            const sendNotificationBtn = document.getElementById('send-notification-btn');
+            const viewNotificationsBtn = document.getElementById('view-notifications-btn');
+            const notificationBadge = document.querySelector('.notification-badge');
             
-            loginBtn.addEventListener('click', function() {
-                const username = document.getElementById('username').value;
-                const userType = document.getElementById('user-type').value;
+            // Botones para descargar PDF
+            const downloadAttendancePdfBtn = document.getElementById('download-attendance-pdf');
+            const downloadGradesPdfBtn = document.getElementById('download-grades-pdf');
+            
+            // Modales
+            const notificationsModal = document.getElementById('notifications-modal');
+            const sendNotificationModal = document.getElementById('send-notification-modal');
+            const editGradesModal = document.getElementById('edit-grades-modal');
+            const attendanceModal = document.getElementById('attendance-modal');
+            const closeModalButtons = document.querySelectorAll('.close-modal');
+            
+            // Elementos para enviar notificaciones
+            const notificationRecipient = document.getElementById('notification-recipient');
+            const specificStudentContainer = document.getElementById('specific-student-container');
+            const specificStudentSelect = document.getElementById('specific-student');
+            const sendNotificationSubmit = document.getElementById('send-notification-submit');
+            
+            // Elementos para editar notas
+            const saveGradesBtn = document.getElementById('save-grades-btn');
+            
+            // Elementos para registrar asistencia
+            const saveAttendanceBtn = document.getElementById('save-attendance-btn');
+            
+            // Variables globales
+            let currentUser = null;
+            let currentUserType = null;
+            
+            // Función para renderizar estudiantes
+            function renderStudents(students) {
+                const container = document.getElementById('students-list');
+                container.innerHTML = '';
                 
-                if (username && document.getElementById('password').value) {
-                    // Actualizar el perfil según el tipo de usuario
-                    if (userType === 'teacher') {
-                        document.getElementById('profile-name').textContent = 'Dante Ismael';
-                        document.getElementById('profile-role').textContent = 'Docente';
-                        document.getElementById('profile-dni').textContent = '65843522';
-                        document.getElementById('profile-email').textContent = 'dante.ismael@gmail.com';
-                        document.getElementById('profile-address').textContent = 'JR. LOS PINOS CON LIMA N° 1876';
-                        document.getElementById('profile-phone').textContent = '+51 945754321';
-                    } else if (userType === 'student') {
-                        document.getElementById('profile-name').textContent = 'Michael';
-                        document.getElementById('profile-role').textContent = 'Estudiante';
-                        document.getElementById('profile-dni').textContent = '01929393';
-                        document.getElementById('profile-email').textContent = 'michael@escuela genesis.edu';
-                        document.getElementById('profile-address').textContent = 'Jr. Estudiantes 123';
-                        document.getElementById('profile-phone').textContent = '+51 954873982 (Padre: Samuel)';
-                    } else if (userType === 'parent') {
-                        document.getElementById('profile-name').textContent = 'Samuel (Padre de Michael)';
-                        document.getElementById('profile-role').textContent = 'Padre de Familia';
-                        document.getElementById('profile-dni').textContent = '76543210';
-                        document.getElementById('profile-email').textContent = 'samuel@email.com';
-                        document.getElementById('profile-address').textContent = 'Jr. Estudiantes 123';
-                        document.getElementById('profile-phone').textContent = '+51 954873982';
+                students.forEach(student => {
+                    // Calcular porcentaje de asistencia
+                    const attendancePercentage = studentAttendance[student.id] ? 
+                        updateAttendanceStats(student.id) || student.attendance : 
+                        student.attendance;
+                    
+                    const studentCard = document.createElement('div');
+                    studentCard.className = 'student-card';
+                    studentCard.setAttribute('data-id', student.id);
+                    studentCard.innerHTML = `
+                        <div class="student-avatar">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="student-info">
+                            <h4>${student.name}</h4>
+                            <p>Grado: ${student.grade} | DNI: ${student.dni}</p>
+                            <p class="attendance-percentage">Asistencia: ${attendancePercentage}%</p>
+                            <p>Promedio: ${student.avgGrade}</p>
+                        </div>
+                        <div class="student-actions">
+                            <button class="view-attendance-btn"><i class="fas fa-calendar-check"></i></button>
+                            <button class="edit-grades-btn"><i class="fas fa-edit"></i></button>
+                            <button class="register-attendance-btn"><i class="fas fa-user-check"></i></button>
+                        </div>
+                    `;
+                    container.appendChild(studentCard);
+                    
+                    // Agregar evento al botón de editar notas
+                    studentCard.querySelector('.edit-grades-btn').addEventListener('click', () => {
+                        currentEditingStudent = student;
+                        openEditGradesModal(student);
+                    });
+                    
+                    // Agregar evento al botón de registrar asistencia
+                    studentCard.querySelector('.register-attendance-btn').addEventListener('click', () => {
+                        currentEditingStudent = student;
+                        openAttendanceModal(student);
+                    });
+                    
+                    // Agregar evento al botón de ver asistencia
+                    studentCard.querySelector('.view-attendance-btn').addEventListener('click', () => {
+                        viewStudentAttendance(student);
+                    });
+                });
+            }
+            
+            // Función para renderizar notificaciones
+            function renderNotifications() {
+                const container = document.getElementById('notifications-list');
+                container.innerHTML = '';
+                
+                const userNotifications = notifications[currentUserType] || [];
+                
+                if (userNotifications.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; padding: 1rem;">No hay notificaciones</p>';
+                    return;
+                }
+                
+                userNotifications.forEach(notification => {
+                    const notificationItem = document.createElement('div');
+                    notificationItem.className = `notification-item ${notification.read ? '' : 'unread'}`;
+                    
+                    let typeClass = '';
+                    let typeText = '';
+                    
+                    switch(notification.type) {
+                        case 'attendance':
+                            typeClass = 'type-warning';
+                            typeText = 'Asistencia';
+                            break;
+                        case 'homework':
+                            typeClass = 'type-important';
+                            typeText = 'Tareas';
+                            break;
+                        case 'grades':
+                            typeClass = 'type-info';
+                            typeText = 'Notas';
+                            break;
+                        default:
+                            typeClass = '';
+                            typeText = 'General';
                     }
                     
+                    notificationItem.innerHTML = `
+                        <div class="notification-title">
+                            <span>${notification.title}</span>
+                            <span class="notification-date">${notification.date}</span>
+                        </div>
+                        <div class="notification-message">${notification.message}</div>
+                        <div style="margin-top: 0.5rem;">
+                            <span class="notification-type ${typeClass}">${typeText}</span>
+                            <span style="font-size: 0.8rem; color: #666;">Enviado por: ${notification.sender}</span>
+                        </div>
+                    `;
+                    
+                    notificationItem.addEventListener('click', function() {
+                        // Marcar como leída
+                        notification.read = true;
+                        renderNotifications();
+                        updateNotificationBadge();
+                    });
+                    
+                    container.appendChild(notificationItem);
+                });
+            }
+            
+            // Función para actualizar el badge de notificaciones
+            function updateNotificationBadge() {
+                const userNotifications = notifications[currentUserType] || [];
+                const unreadCount = userNotifications.filter(n => !n.read).length;
+                
+                if (unreadCount > 0) {
+                    notificationBadge.textContent = unreadCount;
+                    notificationBadge.classList.remove('hidden');
+                } else {
+                    notificationBadge.classList.add('hidden');
+                }
+            }
+            
+            // Función para poblar el select de estudiantes
+            function populateStudentSelect() {
+                specificStudentSelect.innerHTML = '';
+                studentsList.forEach(student => {
+                    const option = document.createElement('option');
+                    option.value = student.id;
+                    option.textContent = `${student.name} (${student.grade})`;
+                    specificStudentSelect.appendChild(option);
+                });
+            }
+            
+            // Función para enviar notificación
+            function sendNotification() {
+                const type = document.getElementById('notification-type').value;
+                const recipient = document.getElementById('notification-recipient').value;
+                const studentId = specificStudentSelect.value;
+                const title = document.getElementById('notification-title').value;
+                const message = document.getElementById('notification-message').value;
+                
+                if (!title || !message) {
+                    alert('Por favor complete todos los campos');
+                    return;
+                }
+                
+                // Determinar el tipo de notificación
+                let notificationType = '';
+                let notificationTitle = '';
+                
+                switch(type) {
+                    case 'attendance':
+                        notificationType = 'attendance';
+                        notificationTitle = 'Inasistencia registrada';
+                        break;
+                    case 'homework':
+                        notificationType = 'homework';
+                        notificationTitle = 'Tarea pendiente';
+                        break;
+                    case 'grades':
+                        notificationType = 'grades';
+                        notificationTitle = 'Notas del trimestre';
+                        break;
+                    default:
+                        notificationType = 'other';
+                        notificationTitle = title;
+                }
+                
+                // Crear la notificación
+                const newNotification = {
+                    id: Date.now(),
+                    title: notificationTitle,
+                    message: message,
+                    type: notificationType,
+                    date: new Date().toLocaleDateString(),
+                    read: false,
+                    sender: currentUser.name
+                };
+                
+                // Enviar a los destinatarios correspondientes
+                if (recipient === 'all') {
+                    // A todos los estudiantes y padres
+                    notifications.student.push(newNotification);
+                    notifications.parent.push({
+                        ...newNotification,
+                        title: `Notificación sobre su hijo/a: ${newNotification.title}`,
+                        message: `Estimado padre/madre: ${newNotification.message}`
+                    });
+                } else if (recipient === 'specific' && studentId) {
+                    // A un estudiante específico y su padre
+                    const student = studentsList.find(s => s.id == studentId);
+                    if (student) {
+                        notifications.student.push(newNotification);
+                        notifications.parent.push({
+                            ...newNotification,
+                            title: `Notificación sobre ${student.name}: ${newNotification.title}`,
+                            message: `Estimado padre/madre de ${student.name}: ${newNotification.message}`
+                        });
+                    }
+                } else if (recipient === 'parents') {
+                    // Solo a padres
+                    notifications.parent.push({
+                        ...newNotification,
+                        title: `Notificación sobre su hijo/a: ${newNotification.title}`,
+                        message: `Estimado padre/madre: ${newNotification.message}`
+                    });
+                }
+                
+                // Cerrar modal y limpiar campos
+                sendNotificationModal.style.display = 'none';
+                document.getElementById('notification-title').value = '';
+                document.getElementById('notification-message').value = '';
+                
+                alert('Notificación enviada con éxito');
+            }
+            
+            // Función para abrir el modal de edición de notas
+            function openEditGradesModal(student) {
+                document.getElementById('student-name-label').textContent = `Notas para: ${student.name}`;
+                
+                // Limpiar tabla
+                const tableBody = document.getElementById('grades-table-body');
+                tableBody.innerHTML = '';
+                
+                // Agregar filas para cada curso
+                courses.forEach(course => {
+                    const row = document.createElement('tr');
+                    
+                    // Generar 3 notas aleatorias entre 10 y 20 para el ejemplo
+                    const grade1 = Math.floor(Math.random() * 11) + 10;
+                    const grade2 = Math.floor(Math.random() * 11) + 10;
+                    const grade3 = Math.floor(Math.random() * 11) + 10;
+                    const average = ((grade1 + grade2 + grade3) / 3).toFixed(1);
+                    
+                    row.innerHTML = `
+                        <td>${course}</td>
+                        <td><input type="number" min="0" max="20" value="${grade1}" class="grade-input"></td>
+                        <td><input type="number" min="0" max="20" value="${grade2}" class="grade-input"></td>
+                        <td><input type="number" min="0" max="20" value="${grade3}" class="grade-input"></td>
+                        <td>${average}</td>
+                    `;
+                    
+                    tableBody.appendChild(row);
+                });
+                
+                editGradesModal.style.display = 'flex';
+            }
+            
+            // Función para guardar las notas
+            function saveGrades() {
+                if (!currentEditingStudent) return;
+                
+                const gradeInputs = document.querySelectorAll('.grade-input');
+                const grades = [];
+                
+                // Recopilar todas las notas
+                for (let i = 0; i < courses.length; i++) {
+                    const courseGrades = {
+                        course: courses[i],
+                        grade1: gradeInputs[i*3].value,
+                        grade2: gradeInputs[i*3+1].value,
+                        grade3: gradeInputs[i*3+2].value
+                    };
+                    grades.push(courseGrades);
+                }
+                
+                // Guardar las notas para este estudiante
+                if (!studentGrades[currentEditingStudent.id]) {
+                    studentGrades[currentEditingStudent.id] = {};
+                }
+                
+                const term = document.getElementById('grade-term').value;
+                studentGrades[currentEditingStudent.id][term] = grades;
+                
+                // Cerrar modal
+                editGradesModal.style.display = 'none';
+                
+                // Mostrar mensaje de éxito
+                alert(`Notas actualizadas correctamente para ${currentEditingStudent.name}`);
+            }
+            
+            // Función para abrir el modal de asistencia
+            function openAttendanceModal(student) {
+                document.getElementById('attendance-student-name').textContent = `Estudiante: ${student.name}`;
+                
+                // Establecer fecha actual por defecto
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('attendance-date').value = today;
+                
+                // Limpiar campos
+                document.getElementById('attendance-status').value = 'present';
+                document.getElementById('attendance-course').value = 'MATEMÁTICA';
+                document.getElementById('attendance-notes').value = '';
+                
+                attendanceModal.style.display = 'flex';
+            }
+            
+            // Función para guardar la asistencia
+            function saveAttendance() {
+                if (!currentEditingStudent) return;
+                
+                const studentId = currentEditingStudent.id;
+                const date = document.getElementById('attendance-date').value;
+                const status = document.getElementById('attendance-status').value;
+                const course = document.getElementById('attendance-course').value;
+                const notes = document.getElementById('attendance-notes').value;
+                
+                // Crear registro de asistencia
+                const attendanceRecord = {
+                    date,
+                    status,
+                    course,
+                    notes,
+                    recordedAt: new Date().toISOString()
+                };
+                
+                // Inicializar array para el estudiante si no existe
+                if (!studentAttendance[studentId]) {
+                    studentAttendance[studentId] = [];
+                }
+                
+                // Agregar registro
+                studentAttendance[studentId].push(attendanceRecord);
+                
+                // Cerrar modal
+                attendanceModal.style.display = 'none';
+                
+                // Mostrar mensaje de éxito
+                alert(`Asistencia registrada para ${currentEditingStudent.name}`);
+                
+                // Actualizar estadísticas de asistencia
+                updateAttendanceStats(studentId);
+            }
+            
+            // Función para actualizar estadísticas de asistencia
+            function updateAttendanceStats(studentId) {
+                if (!studentAttendance[studentId]) return;
+                
+                const records = studentAttendance[studentId];
+                const totalDays = records.length;
+                const presentDays = records.filter(r => r.status === 'present').length;
+                const attendancePercentage = Math.round((presentDays / totalDays) * 100);
+                
+                // Actualizar tarjeta del estudiante
+                const studentCard = document.querySelector(`.student-card[data-id="${studentId}"]`);
+                if (studentCard) {
+                    const attendanceElement = studentCard.querySelector('.attendance-percentage');
+                    if (attendanceElement) {
+                        attendanceElement.textContent = `Asistencia: ${attendancePercentage}%`;
+                    }
+                }
+                
+                return attendancePercentage;
+            }
+            
+            // Función para ver el historial de asistencia de un estudiante
+            function viewStudentAttendance(student) {
+                const modal = document.createElement('div');
+                modal.className = 'modal';
+                modal.innerHTML = `
+                    <div class="modal-content" style="max-width: 800px;">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Historial de Asistencia: ${student.name}</h3>
+                            <button class="close-modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Curso</th>
+                                        <th>Estado</th>
+                                        <th>Observaciones</th>
+                                        <th>Registrado</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="attendance-history-body">
+                                    <!-- Los registros se cargarán aquí -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                // Cargar registros de asistencia
+                const tbody = modal.querySelector('#attendance-history-body');
+                const records = studentAttendance[student.id] || [];
+                
+                if (records.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">No hay registros de asistencia</td></tr>';
+                } else {
+                    records.forEach(record => {
+                        const row = document.createElement('tr');
+                        
+                        // Mapear estado a texto y clase CSS
+                        let statusText = '';
+                        let statusClass = '';
+                        switch(record.status) {
+                            case 'present':
+                                statusText = 'Presente';
+                                statusClass = 'present';
+                                break;
+                            case 'absent':
+                                statusText = 'Ausente';
+                                statusClass = 'absent';
+                                break;
+                            case 'late':
+                                statusText = 'Tardanza';
+                                statusClass = 'late';
+                                break;
+                            case 'justified':
+                                statusText = 'Justificado';
+                                statusClass = 'justified';
+                                break;
+                        }
+                        
+                        row.innerHTML = `
+                            <td>${record.date}</td>
+                            <td>${record.course}</td>
+                            <td class="${statusClass}">${statusText}</td>
+                            <td>${record.notes || '-'}</td>
+                            <td>${new Date(record.recordedAt).toLocaleString()}</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                }
+                
+                // Configurar cierre del modal
+                modal.querySelector('.close-modal').addEventListener('click', () => {
+                    modal.remove();
+                });
+                
+                modal.style.display = 'flex';
+                
+                // Cerrar al hacer clic fuera
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+            }
+            
+            // Función para generar PDF de asistencia
+            function generateAttendancePDF() {
+                const doc = new jsPDF();
+                
+                // Título del documento
+                doc.setFontSize(18);
+                doc.text('Registro de Asistencia - ESCUELA GENESIS', 105, 15, { align: 'center' });
+                
+                // Información de la escuela
+                doc.setFontSize(12);
+                doc.text('Año Académico: 2025', 14, 25);
+                doc.text('Grado: 5° Primaria', 14, 32);
+                doc.text('Docente: Dante Ismael', 14, 39);
+                
+                // Fecha de generación
+                const today = new Date();
+                doc.text(`Generado: ${today.toLocaleDateString()}`, 14, 46);
+                
+                // Línea divisoria
+                doc.line(14, 94, 190, 94);
+                
+                // Sección JULIO con tabla
+                doc.setFontSize(14);
+                doc.text('JULIO', 14, 104);
+                
+                // Crear la tabla de asistencia para julio
+                const julioHeaders = [['', '6', '7', '8', '9', '10', '11', '12']];
+                const julioData = [
+                    ['13', '14', '15', '16', '17', '18', '19'],
+                    ['20', '21', '22', '23', '24', '25', '26'],
+                    ['27', '28', '29', '30', '', '', '']
+                ];
+                
+                doc.autoTable({
+                    startY: 110,
+                    head: julioHeaders,
+                    body: julioData,
+                    margin: { left: 14 },
+                    styles: { 
+                        fontSize: 10,
+                        cellPadding: 3,
+                        textColor: [0, 0, 0]
+                    },
+                    headStyles: { 
+                        fillColor: [52, 152, 219],
+                        textColor: [255, 255, 255]
+                    },
+                    alternateRowStyles: {
+                        fillColor: [240, 240, 240]
+                    }
+                });
+                
+                // Línea divisoria
+                doc.line(14, doc.lastAutoTable.finalY + 10, 190, doc.lastAutoTable.finalY + 10);
+                
+                // Línea divisoria
+                doc.line(14, doc.lastAutoTable.finalY + 120, 190, doc.lastAutoTable.finalY + 120);
+                
+                // Guardar el PDF
+                doc.save(`Registro_Asistencia_ESCUELA_GENESIS_${today.getFullYear()}_${today.getMonth()+1}_${today.getDate()}.pdf`);
+            }
+            
+            // Función para generar PDF de notas
+            function generateGradesPDF() {
+                const doc = new jsPDF();
+                
+                // Título del documento
+                doc.setFontSize(18);
+                doc.text('Reporte de Notas - ESCUELA GENESIS', 105, 15, { align: 'center' });
+                
+                // Información de la escuela
+                doc.setFontSize(12);
+                doc.text('Año Académico: 2025', 14, 25);
+                doc.text('Grado: 5° Primaria', 14, 32);
+                
+                // Fecha de generación
+                const today = new Date();
+                doc.text(`Generado: ${today.toLocaleDateString()}`, 14, 39);
+                
+                // Datos del usuario
+                doc.text(`Usuario: ${currentUser.name}`, 14, 46);
+                doc.text(`Tipo: ${currentUserType === 'teacher' ? 'Docente' : currentUserType === 'student' ? 'Estudiante' : 'Padre'}`, 14, 53);
+                
+                if (currentUserType === 'teacher') {
+                    // Para docentes: mostrar notas de todos los estudiantes
+                    doc.text('Notas de Estudiantes - I Trimestre', 14, 68);
+                    
+                    // Encabezados de la tabla
+                    const headers = [['Estudiante', 'DNI', 'Matemática', 'Comunicación', 'Personal Social', 'CTA', 'Ed. Física', 'Ed. Religiosa', 'Promedio']];
+                    
+                    // Datos de la tabla
+                    const data = studentsList.map(student => {
+                        // Generar notas aleatorias para el ejemplo
+                        const math = Math.floor(Math.random() * 11) + 10;
+                        const comm = Math.floor(Math.random() * 11) + 10;
+                        const social = Math.floor(Math.random() * 11) + 10;
+                        const cta = Math.floor(Math.random() * 11) + 10;
+                        const pe = Math.floor(Math.random() * 11) + 10;
+                        const religion = Math.floor(Math.random() * 11) + 10;
+                        const average = ((math + comm + social + cta + pe + religion) / 6).toFixed(1);
+                        
+                        return [
+                            student.name,
+                            student.dni,
+                            math,
+                            comm,
+                            social,
+                            cta,
+                            pe,
+                            religion,
+                            average
+                        ];
+                    });
+                    
+                    // Generar tabla
+                    doc.autoTable({
+                        startY: 73,
+                        head: headers,
+                        body: data,
+                        margin: { left: 14 },
+                        styles: { fontSize: 9 },
+                        headStyles: { fillColor: [52, 152, 219] }
+                    });
+                } else {
+                    // Para estudiantes y padres: mostrar solo sus notas o las de su hijo
+                    const studentId = currentUserType === 'student' ? 1 : 1; // Asumiendo que Michael es el estudiante con id 1
+                    const student = studentsList.find(s => s.id === studentId);
+                    
+                    doc.text(`Notas de: ${student.name} - I Trimestre`, 14, 68);
+                    
+                    // Encabezados de la tabla
+                    const headers = [['Curso', 'Nota 1', 'Nota 2', 'Nota 3', 'Promedio']];
+                    
+                    // Datos de la tabla (notas aleatorias para el ejemplo)
+                    const data = [
+                        ['Matemática', 15, 16, 17, 16],
+                        ['Comunicación', 14, 15, 16, 15],
+                        ['Personal Social', 17, 18, 17, 17.3],
+                        ['CTA', 16, 15, 16, 15.7],
+                        ['Educación Física', 18, 17, 18, 17.7],
+                        ['Educación Religiosa', 16, 17, 18, 17]
+                    ];
+                    
+                    // Generar tabla
+                    doc.autoTable({
+                        startY: 73,
+                        head: headers,
+                        body: data,
+                        margin: { left: 14 },
+                        styles: { fontSize: 10 },
+                        headStyles: { fillColor: [52, 152, 219] }
+                    });
+                    
+                    // Promedio general
+                    doc.text(`Promedio General: ${student.avgGrade}`, 14, doc.lastAutoTable.finalY + 10);
+                }
+                
+                // Guardar el PDF
+                doc.save(`Notas_ESCUELA_GENESIS_${today.getFullYear()}_${today.getMonth()+1}_${today.getDate()}.pdf`);
+            }
+            
+            // Evento de login
+            loginBtn.addEventListener('click', function() {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const userType = userTypeSelect.value;
+                
+                // Validar credenciales
+                const user = users[userType].find(u => u.username === username && u.password === password);
+                
+                if (user) {
+                    currentUser = user;
+                    currentUserType = userType;
+                    
+                    // Actualizar el perfil
+                    document.getElementById('profile-name').textContent = user.name;
+                    document.getElementById('profile-role').textContent = 
+                        userType === 'teacher' ? 'Docente' : 
+                        userType === 'student' ? 'Estudiante' : 'Padre de Familia';
+                    document.getElementById('profile-dni').textContent = user.dni;
+                    document.getElementById('profile-email').textContent = user.email;
+                    document.getElementById('profile-address').textContent = user.address;
+                    document.getElementById('profile-phone').textContent = user.phone;
+                    
+                    // Mostrar/ocultar elementos según el tipo de usuario
+                    if (userType === 'teacher') {
+                        studentsMenuItem.classList.remove('hidden');
+                        document.getElementById('send-notification-btn').classList.remove('hidden');
+                        renderStudents(studentsList);
+                        populateStudentSelect();
+                    } else {
+                        studentsMenuItem.classList.add('hidden');
+                        document.getElementById('send-notification-btn').classList.add('hidden');
+                    }
+                    
+                    // Actualizar notificaciones
+                    renderNotifications();
+                    updateNotificationBadge();
+                    
+                    // Mostrar aplicación
                     loginScreen.classList.add('hidden');
                     appContainer.classList.remove('hidden');
                 } else {
-                    alert('Por favor ingrese usuario y contraseña');
+                    alert('Usuario o contraseña incorrectos');
                 }
             });
             
+            // Evento de logout
             logoutBtn.addEventListener('click', function() {
                 loginScreen.classList.remove('hidden');
                 appContainer.classList.add('hidden');
                 document.getElementById('username').value = '';
                 document.getElementById('password').value = '';
+                currentUser = null;
+                currentUserType = null;
             });
             
             // Manejo de pestañas
@@ -1083,6 +2267,16 @@
                     const tabId = this.getAttribute('data-tab');
                     document.getElementById(tabId).classList.add('active');
                 });
+            });
+            
+            // Manejo de búsqueda de estudiantes
+            document.getElementById('student-search')?.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                const filteredStudents = studentsList.filter(student => 
+                    student.name.toLowerCase().includes(searchTerm) || 
+                    student.dni.includes(searchTerm)
+                );
+                renderStudents(filteredStudents);
             });
             
             // Manejo de meses en asistencia
@@ -1130,6 +2324,64 @@
                     console.log('Curso seleccionado:', this.querySelector('h3').textContent);
                 });
             });
+            
+            // Manejo de modales
+            viewNotificationsBtn.addEventListener('click', function() {
+                notificationsModal.style.display = 'flex';
+            });
+            
+            sendNotificationBtn.addEventListener('click', function() {
+                sendNotificationModal.style.display = 'flex';
+            });
+            
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    notificationsModal.style.display = 'none';
+                    sendNotificationModal.style.display = 'none';
+                    editGradesModal.style.display = 'none';
+                    attendanceModal.style.display = 'none';
+                });
+            });
+            
+            // Cerrar modal al hacer clic fuera del contenido
+            window.addEventListener('click', function(event) {
+                if (event.target === notificationsModal) {
+                    notificationsModal.style.display = 'none';
+                }
+                if (event.target === sendNotificationModal) {
+                    sendNotificationModal.style.display = 'none';
+                }
+                if (event.target === editGradesModal) {
+                    editGradesModal.style.display = 'none';
+                }
+                if (event.target === attendanceModal) {
+                    attendanceModal.style.display = 'none';
+                }
+            });
+            
+            // Cambiar visibilidad del select de estudiante específico
+            notificationRecipient.addEventListener('change', function() {
+                if (this.value === 'specific') {
+                    specificStudentContainer.style.display = 'block';
+                } else {
+                    specificStudentContainer.style.display = 'none';
+                }
+            });
+            
+            // Enviar notificación
+            sendNotificationSubmit.addEventListener('click', sendNotification);
+            
+            // Guardar notas
+            saveGradesBtn.addEventListener('click', saveGrades);
+            
+            // Guardar asistencia
+            saveAttendanceBtn.addEventListener('click', saveAttendance);
+            
+            // Generar PDF de asistencia
+            downloadAttendancePdfBtn?.addEventListener('click', generateAttendancePDF);
+            
+            // Generar PDF de notas
+            downloadGradesPdfBtn?.addEventListener('click', generateGradesPDF);
         });
     </script>
 </body>
